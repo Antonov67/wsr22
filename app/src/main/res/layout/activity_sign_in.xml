@@ -59,7 +59,7 @@
         android:textAllCaps="false"
         android:textSize="16dp"
         android:textColor="@color/white"
-        android:text="Зарегистрироваться" />
+        android:text="Войти" />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_sign_in_exit"
         android:layout_marginTop="13dp"
@@ -72,7 +72,7 @@
         android:textAllCaps="false"
         android:textSize="16dp"
         android:textColor="@color/pink_button"
-        android:text="У меня уже есть аккаунт"
+        android:text="Регистрация"
         />
 
 </LinearLayout>
