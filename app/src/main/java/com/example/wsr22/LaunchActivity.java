@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 public class LaunchActivity extends AppCompatActivity {
@@ -24,7 +23,7 @@ public class LaunchActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(LaunchActivity.this, MainActivity.class));
+                startActivity(new Intent(LaunchActivity.this, SignUpActivity.class));
             }
         }, 6000);
     }
