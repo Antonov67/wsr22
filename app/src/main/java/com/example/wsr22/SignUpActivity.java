@@ -32,17 +32,11 @@ public class SignUpActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*проверим что все символы маленькие и после точки не больше 3х символов, общая маска
-                проверяется с помощью готового паттерна
-                String stroka = email.getText().toString();
-                if (email.getText().toString().toLowerCase().equals(email.getText().toString())
-                        && (email.getText().toString().length() - email.getText().toString().indexOf(".")<=4)
-                        && Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()) {
-                    Toast.makeText(getApplicationContext(), email.getText(), Toast.LENGTH_LONG).show();
-                }
-                else
-                    Toast.makeText(getApplicationContext(), "Нет", Toast.LENGTH_LONG).show();
-
+                /*
+                Требования к email: email должен соответствовать паттерну "name@domenname.ru",
+                где имя и домен второго уровня могут состоять только из маленьких букв и цифр,
+                домен верхнего уровня - только из маленьких букв. Длина домена верхнего уровня -
+                не более 3х символов.
                  */
                 Pattern VALID_EMAIL_ADDRESS_REGEX =
                         Pattern.compile("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{1,3}$");
