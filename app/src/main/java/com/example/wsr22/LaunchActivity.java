@@ -13,7 +13,7 @@ public class LaunchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.launch_main);
+        setContentView(R.layout.launch_activity);
         getSupportActionBar().hide();
         ImageView imageView = findViewById(R.id.imageView);
         //анимация, если нужна
