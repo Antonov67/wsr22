@@ -14,7 +14,7 @@
         android:id="@+id/text_logo"
         android:layout_width="207dp"
         android:layout_height="23dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="38dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/worldcinema" />
 
@@ -30,12 +30,80 @@
         android:id="@+id/sign_up_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:padding="16dp"
-        android:layout_margin="16dp"
+        android:padding="10dp"
+        android:layout_margin="11dp"
         android:background="@drawable/rounded_corner"
         android:textColor="@color/text_color"
         android:inputType="textPersonName"
         android:text="Имя" />
+    <EditText
+        android:id="@+id/sign_up_surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="11dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/text_color"
+        android:inputType="textPersonName"
+        android:text="Фамилия" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="11dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/text_color"
+        android:text="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/password_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="11dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/text_color"
+        android:text="Пароль"
+        android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/password_sign_up_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="11dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/text_color"
+        android:text="Повторите пароль"
+        android:inputType="textPassword" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:background="@drawable/rounded_corner_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:text="Зарегистрироваться" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_sign_up_exit"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:background="@drawable/rounded_corner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textColor="@color/pink_button"
+        android:text="Зарегистрироваться" />
 
 </LinearLayout>
