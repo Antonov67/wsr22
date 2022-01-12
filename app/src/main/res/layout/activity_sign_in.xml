@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity"
     android:orientation="vertical"
     android:background="@color/fon"
 
@@ -27,28 +26,7 @@
         app:srcCompat="@drawable/video_camera2" />
 
     <EditText
-        android:id="@+id/sign_up_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="11dp"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@color/text_color"
-        android:inputType="textPersonName"
-        android:text="Имя" />
-    <EditText
-        android:id="@+id/sign_up_surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="11dp"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@color/text_color"
-        android:inputType="textPersonName"
-        android:text="Фамилия" />
-
-    <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/emailAddress_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -59,7 +37,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/password_sign_up"
+        android:id="@+id/password_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -68,20 +46,10 @@
         android:textColor="@color/text_color"
         android:text="Пароль"
         android:inputType="textPassword" />
-    <EditText
-        android:id="@+id/password_sign_up_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="11dp"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@color/text_color"
-        android:text="Повторите пароль"
-        android:inputType="textPassword" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_marginTop="32dp"
+        android:id="@+id/button_sign_in"
+        android:layout_marginTop="220dp"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
         android:background="@drawable/rounded_corner_button"
@@ -93,7 +61,7 @@
         android:textColor="@color/white"
         android:text="Зарегистрироваться" />
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_sign_up_exit"
+        android:id="@+id/button_sign_in_exit"
         android:layout_marginTop="13dp"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
