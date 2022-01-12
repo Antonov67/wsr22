@@ -17,7 +17,7 @@ public class LaunchActivity extends AppCompatActivity {
         setContentView(R.layout.launch_main);
         getSupportActionBar().hide();
         ImageView imageView = findViewById(R.id.imageView);
-        //анимация
+        //анимация, если нужна
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.combination);
         imageView.startAnimation(animation);
         //через 6 секунд открываем основное окно
