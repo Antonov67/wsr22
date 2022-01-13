@@ -1,13 +1,21 @@
 package com.example.wsr22;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,29 +52,57 @@ public class SignInActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Call<LoginResponse> call = jsonPlaceHolderApi.login(loginRequest);
-                call.enqueue(new Callback<LoginResponse>() {
-                    @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (!response.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Code:" + response.code(), Toast.LENGTH_LONG).show();
-                            return;
+                if (emailIsCorrect(email.getText().toString())) {
+                    Call<LoginResponse> call = jsonPlaceHolderApi.auth_login(loginRequest);
+                    call.enqueue(new Callback<LoginResponse>() {
+                        @Override
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                            if (!response.isSuccessful()) {
+                                createDialog("Code:" + response.code()).show();
+                                return;
+                            }
+                            LoginResponse loginResponse = response.body();
+                            createDialog(loginResponse.data.token).show();
                         }
-                        LoginResponse loginResponse = response.body();
-                        Toast.makeText(getApplicationContext(),
-                                loginResponse.data.token,
-                                Toast.LENGTH_LONG).show();
-                    }
 
-                    @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(),
-                                t.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(),
+                                    t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                else {
+                    createDialog("Неверный email").show();
+                }
             }
         });
+    }
+    //метод проверки корректности почты
+    public boolean emailIsCorrect(String email){
+     /*
+                Требования к email: email должен соответствовать паттерну "name@domenname.ru",
+                где имя и домен второго уровня могут состоять только из маленьких букв и цифр,
+                домен верхнего уровня - только из маленьких букв. Длина домена верхнего уровня -
+                 не более 3х символов и поле ввода почты не пустое.
+                 */
+        Pattern VALID_EMAIL_ADDRESS_REGEX =
+                Pattern.compile("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{1,3}$");
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        return (matcher.find() && email.length()!=0);
+    }
+    //метод создания диалогового окна
+    Dialog createDialog(String message){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(SignInActivity.this);
+        dialog.setTitle("Предупреждение")
+                .setMessage(message)
+                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        return dialog.create();
 
     }
 }
