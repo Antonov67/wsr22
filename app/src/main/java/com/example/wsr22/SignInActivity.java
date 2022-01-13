@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,9 @@ public class SignInActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button_sign_in_exit);
         Button button2 = findViewById(R.id.button_sign_in);
+        EditText email = findViewById(R.id.emailAddress_sign_in);
+        EditText password = findViewById(R.id.password_sign_in);
+        LoginRequest loginRequest = new LoginRequest(email.getText().toString(), password.getText().toString());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,27 +44,23 @@ public class SignInActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"начнем",Toast.LENGTH_LONG).show();
-                Call<User> call = jsonPlaceHolderApi.authUser();
-                call.enqueue(new Callback<User>() {
+                Call<LoginResponse> call = jsonPlaceHolderApi.login(loginRequest);
+                call.enqueue(new Callback<LoginResponse>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (!response.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
                                     "Code:" + response.code(), Toast.LENGTH_LONG).show();
                             return;
                         }
-                        User user = response.body();
+                        LoginResponse loginResponse = response.body();
                         Toast.makeText(getApplicationContext(),
-                                user.getEmail() + "\n" +
-                                        user.getFirstName() + "\n" +
-                                        user.getLastName() + "\n" +
-                                        user.getPassword(),
+                                loginResponse.data.token,
                                 Toast.LENGTH_LONG).show();
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),
                                 t.getMessage(),Toast.LENGTH_LONG).show();
                     }
