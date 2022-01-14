@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,7 +42,6 @@ public class SignInActivity extends AppCompatActivity {
         Button button2 = findViewById(R.id.button_sign_in);
         EditText email = findViewById(R.id.emailAddress_sign_in);
         EditText password = findViewById(R.id.password_sign_in);
-        LoginRequest loginRequest = new LoginRequest(email.getText().toString(), password.getText().toString());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,17 +52,25 @@ public class SignInActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if (emailIsCorrect(email.getText().toString())) {
+                if (emailIsCorrect(email.getText().toString())
+                        && password.length()!=0) {
+                    Log.d("cinema",email.getText().toString());
+                    Log.d("cinema",password.getText().toString());
+                    LoginRequest loginRequest = new LoginRequest(email.getText().toString(), password.getText().toString());
                     Call<LoginResponse> call = jsonPlaceHolderApi.auth_login(loginRequest);
                     call.enqueue(new Callback<LoginResponse>() {
                         @Override
                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                             if (!response.isSuccessful()) {
+                                Log.d("cinema","bad");
                                 createDialog("Code:" + response.code()).show();
                                 return;
                             }
                             LoginResponse loginResponse = response.body();
-                            createDialog(loginResponse.data.token).show();
+                            Log.d("cinema", loginResponse.token);
+                            //createDialog(loginResponse.data.token).show();
+                            //после успешной авторизации переходим на MainScreen
+                            //startActivity(new Intent(SignInActivity.this, MainScreen.class));
                         }
 
                         @Override
