@@ -21,4 +21,3 @@ public class UserProfile {
     public String avatar;
 
 }
-}
