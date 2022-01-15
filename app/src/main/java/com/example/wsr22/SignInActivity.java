@@ -54,29 +54,24 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (emailIsCorrect(email.getText().toString())
                         && password.length()!=0) {
-                    Log.d("cinema",email.getText().toString());
-                    Log.d("cinema",password.getText().toString());
                     LoginRequest loginRequest = new LoginRequest(email.getText().toString(), password.getText().toString());
                     Call<LoginResponse> call = jsonPlaceHolderApi.auth_login(loginRequest);
                     call.enqueue(new Callback<LoginResponse>() {
                         @Override
                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                             if (!response.isSuccessful()) {
-                                Log.d("cinema","bad");
                                 createDialog("Code:" + response.code()).show();
                                 return;
                             }
                             LoginResponse loginResponse = response.body();
-                            Log.d("cinema", loginResponse.token);
-                            //createDialog(loginResponse.data.token).show();
+                            String token = loginResponse.token;
                             //после успешной авторизации переходим на MainScreen
-                            //startActivity(new Intent(SignInActivity.this, MainScreen.class));
+                            startActivity(new Intent(SignInActivity.this, MainScreen.class));
                         }
 
                         @Override
                         public void onFailure(Call<LoginResponse> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),
-                                    t.getMessage(), Toast.LENGTH_LONG).show();
+                            createDialog(t.getMessage()).show();
                         }
                     });
                 }

@@ -17,6 +17,11 @@ public class LoginRequest {
         this.lastName = lastName;
     }
 
+    //конструктор для запроса списков фильмов
+    public LoginRequest() {
+
+    }
+
     @SerializedName("email")
     String email;
 

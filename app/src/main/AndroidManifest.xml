@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Wsr22">
 
         <activity
+            android:name=".MainScreen"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity

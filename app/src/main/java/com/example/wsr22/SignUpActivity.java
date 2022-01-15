@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Observable;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -13,6 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,9 +37,12 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         //Ретрофит
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(" http://cinema.areas.su/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
@@ -57,6 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                //создаём данные для запроса
                 if (password1.getText().toString().equals(password2.getText().toString())
                         && emailIsCorrect(email.getText().toString())
@@ -68,20 +76,18 @@ public class SignUpActivity extends AppCompatActivity {
                             password1.getText().toString(),
                             firstName.getText().toString(),
                             lastName.getText().toString());
-                    Call<LoginResponse> call = jsonPlaceHolderApi.auth_login(loginRequest);
+
+
+                    Call<LoginResponse> call = jsonPlaceHolderApi.reg_login(loginRequest);
                     call.enqueue(new Callback<LoginResponse>() {
                         @Override
                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                            if (!response.isSuccessful()) {
-                                createDialog("Code:" + response.code()).show();
-                                return;
-                            }
+
                         }
 
                         @Override
                         public void onFailure(Call<LoginResponse> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),
-                                    t.getMessage(), Toast.LENGTH_LONG).show();
+
                         }
                     });
                 }
