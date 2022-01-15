@@ -37,7 +37,6 @@ public class MainScreen extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        LoginRequest loginRequest = new LoginRequest();
         Call<List<Film>> call = jsonPlaceHolderApi.get_films("new");
         call.enqueue(new Callback<List<Film>>() {
             @Override

@@ -28,6 +28,6 @@ public interface JsonPlaceHolderApi {
 
     //получение данных для профиля пользователя, авторизация типа Bearer
     @GET("/user")
-    Call<UserProfile> getUser( @Header("Authorization") String authHeader);
+    Call<List<UserProfile>> getUser( @Header("Authorization") String authHeader);
 
 }

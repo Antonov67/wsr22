@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ProfileScreen"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".MainScreen"
             android:exported="false" />

@@ -25,7 +25,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignInActivity extends AppCompatActivity {
-
+    public static String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,8 @@ public class SignInActivity extends AppCompatActivity {
                                 return;
                             }
                             LoginResponse loginResponse = response.body();
-                            String token = loginResponse.token;
+                            token = loginResponse.token;
+                            Log.d("cinema",SignInActivity.token);
                             //после успешной авторизации переходим на MainScreen
                             startActivity(new Intent(SignInActivity.this, MainScreen.class));
                         }
