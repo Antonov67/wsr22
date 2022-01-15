@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wsr22">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/iconka"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/iconka_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Wsr22">
-
+        android:theme="@style/Theme.Wsr22"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ProfileScreen"
+            android:exported="true" />
         <activity
             android:name=".MainScreen"
             android:exported="false" />
@@ -25,6 +29,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

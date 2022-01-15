@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,5 +76,17 @@ public class MainScreen extends AppCompatActivity {
                 });
         return dialog.create();
 
+    }
+
+    public void glavnoe_click(View view) {
+        createDialog("главное").show();
+    }
+
+    public void podborka_click(View view) {
+        createDialog("подборка").show();
+    }
+
+    public void profile_click(View view) {
+        startActivity(new Intent(MainScreen.this, ProfileScreen.class));
     }
 }
