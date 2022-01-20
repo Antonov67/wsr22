@@ -20,7 +20,7 @@ public interface JsonPlaceHolderApi {
 
    //регистрация
     @POST("auth/register")
-    Call<LoginResponse> reg_login(@Body LoginRequest loginRequest);
+    Call<Void> reg_login(@Body LoginRequest loginRequest);
 
     //список фильмов новинок пользователя
     @GET("/movies")

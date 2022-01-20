@@ -78,16 +78,16 @@ public class SignUpActivity extends AppCompatActivity {
                             lastName.getText().toString());
 
 
-                    Call<LoginResponse> call = jsonPlaceHolderApi.reg_login(loginRequest);
-                    call.enqueue(new Callback<LoginResponse>() {
+                    Call<Void> call = jsonPlaceHolderApi.reg_login(loginRequest);
+                    call.enqueue(new Callback<Void>() {
                         @Override
-                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            createDialog("Code: " + response.code()).show();
                         }
 
                         @Override
-                        public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            createDialog(t.getMessage()).show();
                         }
                     });
                 }
