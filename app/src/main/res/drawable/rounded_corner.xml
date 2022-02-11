@@ -4,7 +4,8 @@
     android:padding="10dp">
 
     <solid android:color="@color/fon" />
-    <stroke android:width="2dp" android:color="@color/border_color" />
+    <stroke android:width="2dp"
+        android:color="@color/border_color" />
     <corners
         android:bottomRightRadius="15px"
         android:bottomLeftRadius="15px"

@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "wsr22"
 include ':app'
+include ':wsr22_clock'
