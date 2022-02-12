@@ -1,5 +1,6 @@
-package com.example.wsr22;
+package com.example.wsr22_clock;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -9,9 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,32 +21,23 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SignInActivity extends AppCompatActivity {
+public class ClockSignInActivity extends Activity {
     public static String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        getSupportActionBar().hide();
+        setContentView(R.layout.activity_clock_sign_in);
+        Button button = findViewById(R.id.button);
+        EditText email = findViewById(R.id.editTextEmail);
+        EditText password = findViewById(R.id.editTextPswrd);
         //Ретрофит
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(" http://cinema.areas.su/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Button button = findViewById(R.id.button_sign_in_exit);
-        Button button2 = findViewById(R.id.button_sign_in);
-        EditText email = findViewById(R.id.emailAddress_sign_in);
-        EditText password = findViewById(R.id.password_sign_in);
         button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SignInActivity.this,SignUpActivity.class));
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 if (emailIsCorrect(email.getText().toString())
@@ -63,14 +53,14 @@ public class SignInActivity extends AppCompatActivity {
                             }
                             LoginResponse loginResponse = response.body();
                             token = loginResponse.token;
-                            Log.d("cinema",SignInActivity.token);
+                            createDialog(token).show();
                             //после успешной авторизации переходим на MainScreen
-                            startActivity(new Intent(SignInActivity.this, MainScreen.class));
+                           // startActivity(new Intent(SignInActivity.this, MainScreen.class));
                         }
 
                         @Override
                         public void onFailure(Call<LoginResponse> call, Throwable t) {
-                            createDialog(t.getMessage()).show();
+                            createDialog("ошибка:" + t.getMessage()).show();
                         }
                     });
                 }
@@ -79,6 +69,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     //метод проверки корректности почты
     public boolean emailIsCorrect(String email){
@@ -95,7 +86,7 @@ public class SignInActivity extends AppCompatActivity {
     }
     //метод создания диалогового окна
     Dialog createDialog(String message){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(SignInActivity.this);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ClockSignInActivity.this);
         dialog.setTitle("Предупреждение")
                 .setMessage(message)
                 .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
