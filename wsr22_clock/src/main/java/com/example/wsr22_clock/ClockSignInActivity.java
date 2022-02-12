@@ -53,9 +53,9 @@ public class ClockSignInActivity extends Activity {
                             }
                             LoginResponse loginResponse = response.body();
                             token = loginResponse.token;
-                            createDialog(token).show();
+                            //createDialog("token:" + token).show();
                             //после успешной авторизации переходим на MainScreen
-                           // startActivity(new Intent(SignInActivity.this, MainScreen.class));
+                            startActivity(new Intent(ClockSignInActivity.this, ClockMainActivity.class));
                         }
 
                         @Override
