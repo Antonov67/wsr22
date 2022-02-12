@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/button1"
         app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,7 +23,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="28dp"
         android:src="@drawable/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
         android:textColor="@color/white"
         android:textSize="8dp"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="36dp"
-        android:text="Обсуждения"
+        android:text="Новинки"
         android:textColor="@color/white"
         android:textSize="8dp"
         app:layout_constraintEnd_toEndOf="parent"
