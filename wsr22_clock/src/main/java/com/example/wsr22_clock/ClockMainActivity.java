@@ -15,10 +15,17 @@ public class ClockMainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_main);
         ImageView moviesButton = findViewById(R.id.imageView6);
+        ImageView chatButton = findViewById(R.id.imageView5);
         moviesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ClockMainActivity.this,MoviesActivity.class));
+            }
+        });
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ClockMainActivity.this,ChatListActivity.class));
             }
         });
     }
