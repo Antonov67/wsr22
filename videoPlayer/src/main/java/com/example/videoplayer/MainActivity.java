@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,18 +18,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-
+        //setContentView(R.layout.layout);
         // создание LinearLayout
         LinearLayout linLayout = new LinearLayout(this);
         // установим вертикальную ориентацию
         linLayout.setOrientation(LinearLayout.VERTICAL);
         // создаем LayoutParams
-        LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         // устанавливаем linLayout как корневой элемент экрана
         setContentView(linLayout, linLayoutParam);
-        myVideoView = new MyVideoView(this);
+
+       /* VideoView videoView = findViewById(R.id.videoView);
+        videoView.setMediaController(new MediaController(this));
+        videoView.requestFocus(0);
+        //videoView.setVideoPath("C:/111/video2021.mp4");
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video2021));
+        videoView.start();*/
+
+       myVideoView = new MyVideoView(this);
+        myVideoView.setMediaController(new MediaController(this));
+        myVideoView.requestFocus(0);
         linLayout.addView(myVideoView);
-        myVideoView.setVideoURI(Uri.parse("http://www.cats.com/cat-speak.3gp"));
+        myVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video2021));
         myVideoView.start();
     }
 }
